@@ -1,0 +1,23 @@
+{
+  "name": "studiovity",
+  "version": "1.0.0",
+  "description": "Backend Software for StudioVity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GouravChaki/StudioVity.git"
+  },
+  "author": "Gourav Chaki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GouravChaki/StudioVity/issues"
+  },
+  "homepage": "https://github.com/GouravChaki/StudioVity#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node": "^20.5.0"
+  }
+}
