@@ -7,10 +7,10 @@ URI=process.env.Database_URL; // Retrieving the Database variable from environme
 const connect_to_mongo=async()=>{
 try{
   await mongoose.connect(URI);
-  console.log("Connection to database established");
+  // console.log("Connection to database established");
 }
 catch(error){
-    console.log("Can't connect to the database",error);
+    //console.log("Can't connect to the database",error);
 }
 }
 
