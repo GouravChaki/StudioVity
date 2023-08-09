@@ -7,7 +7,7 @@ module.exports= async (req, res) => {
       
         await connect_to_mongo();//calling the mongodb function for establishing connection
 
-        //extracting user details from request
+        //extracting id from request
         const {id}=req.body;
         
         if(!id)//if character exists it will simply return with an error that credentials exists

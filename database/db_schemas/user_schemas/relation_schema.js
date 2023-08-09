@@ -9,7 +9,15 @@ const relationSchema = new mongoose.Schema({
     description: {
       type: String,
       required: true
-    }
+    },
+    character:{
+      type: mongoose.Schema.Types.ObjectId, //to establish foreign key relation between characterSchema and relationSchema
+      ref: 'Character'
+    },
+    character2: [{
+      type: mongoose.Schema.Types.ObjectId, //to establish foreign key relation between characterSchema and relationSchema
+      ref: 'Character'
+    }]
   });
 
   

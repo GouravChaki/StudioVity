@@ -9,7 +9,7 @@ module.exports= async (req, res) => {
         await connect_to_mongo();//calling the mongodb function for establishing connection
 
         //extracting user details from request
-        const {name, age,photos,gender,occupation,relations_id}=req.body;
+        const {name, age,photos,gender,occupation}=req.body;
         
         if(!name || !age || !photos || !gender || !occupation)//if character exists it will simply return with an error that credentials exists
         {
@@ -17,8 +17,6 @@ module.exports= async (req, res) => {
             return;
         }
         
-        const relation = await Relation.findById(relations_id);
-
         //if all values are provided then data is entered into the model
         const character_details = await Character.create({
           name: name,
@@ -26,7 +24,7 @@ module.exports= async (req, res) => {
           photos: photos,
           gender: gender,
           occupation: occupation,
-          relations: relation || []
+          relations: []
       })
       
       //if we have successfully entered details into character schema then success message is generated
