@@ -33,7 +33,7 @@ module.exports= async (req, res) => {
     catch (error) {
       
       //if some error is encountered during character schema entrance then error message is generated
-      // console.log(error)
+      console.log(error)
       res.status(200).send({success:false,message :"ERROR IN CHARACTER DETAILS CREATION" , data : error})
     }
     finally {

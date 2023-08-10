@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const create_relation=require('../controllers/relations/create_relations');
-const read_relations = require('../controllers/relations/read_relations');
+const create_relation=require('../Modules/relations/create_relations');
+const read_relations = require('../Modules/relations/read_relations');
 
 router.post('/createRelation', create_relation);//createRelation route will create/enter relation_details
 

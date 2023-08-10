@@ -10,7 +10,7 @@ const relationSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    character:{
+    character1:{
       type: mongoose.Schema.Types.ObjectId, //to establish foreign key relation between characterSchema and relationSchema
       ref: 'Character'
     },
