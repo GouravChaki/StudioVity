@@ -61,12 +61,6 @@ module.exports = async (req, res) => {
         });
       return;
     }
-
-    //saving the simultaneous character details in respective character schemas
-    character1.relations.push(character_id2)
-    character2.relations.push(character_id1)
-    await character1.save();
-    await character2.save();
     
     //if relation with same character1 id and name exists
     const relation= await Relation.findOne({
@@ -79,6 +73,10 @@ module.exports = async (req, res) => {
       relation.character2.push(character_id2); //push the character2 details into the character2 attribute of the user
       await relation.save(); //save the relation
     //if we have successfully entered details into relation schema then success message is generated
+
+    //saving the simultaneous character details in respective character schemas
+    character2.relations.push(relation._id)
+    await character2.save();
 
     await res
       .status(200)
@@ -97,6 +95,13 @@ module.exports = async (req, res) => {
         character1:character_id1,
         character2:[character_id2]
       });
+
+          //saving the simultaneous character details in respective character schemas
+          character1.relations.push(relation_details._id)
+          character2.relations.push(relation_details._id)
+          await character1.save();
+          await character2.save();
+
     //if we have successfully entered details into relation schema then success message is generated
     await res
       .status(200)
