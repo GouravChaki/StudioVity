@@ -17,25 +17,25 @@ module.exports= async (req, res) => {
             return;
         }
         
-        const character = await Character.find({});
+        const relation = await Relation.find({});
         
-        if(!character){
-          //if character schema is empty
-          await res.status(200).send({success:false,message:"NO CHARACTER DETAILS EXIST WITH THE GIVEN ID :" ,data :req.body})
+        if(!relation){
+          //if relation schema is empty
+          await res.status(200).send({success:false,message:"NO RELATION DETAILS EXIST WITH THE GIVEN ID :" ,data :req.body})
         }
 
-        //to delete the character with the given id
-        const deleted_character = await Character.deleteOne({ _id: id });
+        //to delete the relation with the given id
+        const deleted_relation = await Relation.deleteOne({ _id: id });
 
-      //if we have successfully deleted details into character schema then success message is generated
-      await res.status(200).send({success:true,message:"CHARACTER DETAILS DELETED SUCCESSFULLY" ,data :deleted_character})
+      //if we have successfully deleted details from relation schema then success message is generated
+      await res.status(200).send({success:true,message:"RELATION DETAILS DELETED SUCCESSFULLY" ,data :deleted_relation})
     
     }
     catch (error) {
       
-      //if some error is encountered during character schema deletion then error message is generated
+      //if some error is encountered during relation schema deletion then error message is generated
       console.log(error)
-      res.status(200).send({success:false,message :"ERROR IN CHARACTER DETAILS DELETION" , data : error})
+      res.status(200).send({success:false,message :"ERROR IN RELATION DETAILS DELETION" , data : error})
     }
     finally {
       //database is closed after it has been used

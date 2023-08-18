@@ -8,7 +8,10 @@ module.exports= async (req, res) => {
         await connect_to_mongo();//calling the mongodb function for establishing connection
         
         const character = await Character.find({});
-
+        if(!character){
+          //if character schema is empty
+          await res.status(200).send({success:false,message:"NO CHARACTER DETAILS EXISTS :" ,data :relation})
+      }
       //if we have successfully fetched all the characters details then success message is generated
       await res.status(200).send({success:true,message:"ALL CHARACTER DETAILS :" ,data :character})
     }
