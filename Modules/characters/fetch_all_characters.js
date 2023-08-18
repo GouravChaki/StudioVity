@@ -6,26 +6,14 @@ module.exports= async (req, res) => {
     try {
       
         await connect_to_mongo();//calling the mongodb function for establishing connection
-
-        //extracting user details from request
-        const {id}=req.body;
         
-        if(!id)//if character exists it will simply return with an error that credentials exists
-        {
-            res.status(200).send({success:false,message:"CHARACTER ID NOT PROVIDED", data: req.body});
-            return;
-        }
-        
-        const character = await Character.findById(id);
-
-        if(!character)
-        {
-            res.status(200).send({success:false,message:"CHARACTER DOESN'T EXISTS", data: req.body});
-            return;
-        }
-      
-      //if we have successfully fetched details then success message is generated
-      await res.status(200).send({success:true,message:"CHARACTER DETAILS :" ,data :character})
+        const character = await Character.find({});
+        if(!character){
+          //if character schema is empty
+          await res.status(200).send({success:false,message:"NO CHARACTER DETAILS EXISTS :" ,data :relation})
+      }
+      //if we have successfully fetched all the characters details then success message is generated
+      await res.status(200).send({success:true,message:"ALL CHARACTER DETAILS :" ,data :character})
     }
     catch (error) {
       
