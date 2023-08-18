@@ -6,3 +6,5 @@ Backend Software for StudioVity
 # npm i nodemon
 # npm i mongoose
 # npm i dotenv
+# npm i bcrypt
+# npm i jsonwebtoken

@@ -38,7 +38,7 @@ module.exports= async (req, res) => {
         
         //if all values are provided then data is entered into the model
         const account_details = await Account.updateOne(
-            {_id:id},
+            {_id:account._id},
             {
                 $set:{
                     name: account.name,
@@ -68,26 +68,3 @@ module.exports= async (req, res) => {
       // console.log('Disconnected from the database')
     }
 }
-
-
-
-
-
-
-
-
-const comp_pass=await bcrypt.compare(password,patient.password)
-if(!comp_pass){
-    res.status(200).send({ success: false, message: "Password doesn't match", data: req.body});
-    return;
-}
-const type_provided="patient"
-const token=await AccessToken(patient,type_provided)
-patient=await prisma.patient.update({
-    data:{
-        token:token
-    },
-    where:{
-        pk_patient_id:patient.pk_patient_id
-    }
-})
