@@ -31,7 +31,7 @@ module.exports= async (req, res) => {
 
         const hashed_pass=await bcrypt.hash(password,salt)// to hash password using salt
 
-        const token=await accesstoken(email,password)//to retrieve the token from AccessToken module
+        const token=await accesstoken(email,hashed_pass)//to retrieve the token from AccessToken module
         
         //if all values are provided then data is entered into the model
         const account_details = await Account.create({
