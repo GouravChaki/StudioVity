@@ -17,18 +17,17 @@ module.exports = async (req, res) => {
         .send({ success: false, message: "VALUE MISSING", data: req.body });
       return;
     }
-    
+
     const character_prev = await Character.findById(id); // to find the previous character details from database
-    
-    if(!character_prev){
+
+    if (!character_prev) {
       //if no character exists with the given character id
-      await res
-        .status(200)
-        .send({
-          success: false,
-          message: "CHARACTER DETAILS DOESN'T EXIST WITH THE GIVEN ID",
-          data: req.body,
-        });
+      await res.status(200).send({
+        success: false,
+        message: "CHARACTER DETAILS DOESN'T EXIST WITH THE GIVEN ID",
+        data: req.body,
+      });
+      return;
     }
     //if all values are provided then data is entered into the model
     const character_details = await Character.updateOne(
@@ -46,23 +45,19 @@ module.exports = async (req, res) => {
     );
 
     //if we have successfully entered details into character schema then success message is generated
-    await res
-      .status(200)
-      .send({
-        success: true,
-        message: "CHARACTER DETAILS UPDATED SUCCESSFULLY",
-        data: character_details,
-      });
+    await res.status(200).send({
+      success: true,
+      message: "CHARACTER DETAILS UPDATED SUCCESSFULLY",
+      data: character_details,
+    });
   } catch (error) {
     //if some error is encountered during character schema entrance then error message is generated
     console.log(error);
-    res
-      .status(200)
-      .send({
-        success: false,
-        message: "ERROR IN CHARACTER DETAILS UPDATION",
-        data: error,
-      });
+    res.status(200).send({
+      success: false,
+      message: "ERROR IN CHARACTER DETAILS UPDATION",
+      data: error,
+    });
   } finally {
     //database is closed after it has been used
     await mongoose.disconnect();
