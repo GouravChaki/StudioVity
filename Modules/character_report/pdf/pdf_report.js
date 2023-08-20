@@ -29,6 +29,7 @@ module.exports = async (character) => {
                             <th>Age</th>
                             <th>Gender</th>
                             <th>Occupation</th>
+                            <th>Photos</th>
                             <th>Relations Linked (IDs)</th>
                         </tr>
                     </thead>
@@ -41,6 +42,9 @@ module.exports = async (character) => {
                                 <td>${char.age}</td>
                                 <td>${char.gender}</td>
                                 <td>${char.occupation}</td>
+                                <td>${char.photos
+                                    .map((photo) => photo)
+                                    .join(", ")}</td>
                                 <td>${char.relations
                             .map((relation) => relation)
                             .join(", ")}</td>
