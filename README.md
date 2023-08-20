@@ -21,3 +21,4 @@ NOTE:
 Eg:-
 ![Alt text](image.png)
 6. No restrictions kept on createAccount and loginAccount so that users can get their auth-token initially.
+7. fetchReport endpoint is entitled with a feature named "type" which specifies in which format user wants data of all characters. Eg:- csv,pdf or excel
