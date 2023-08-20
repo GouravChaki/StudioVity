@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const html_template = require("./html_template");
 module.exports = async (character) => {
     try {
         //pupeeteer launches to the browser
@@ -8,55 +9,7 @@ module.exports = async (character) => {
         const page = await browser.newPage();
 
         // pdf format to be generated in simple html content
-        const pdfContent = `
-        <html>
-            <head>
-            <style>
-            h1{
-                margin-left:30%;
-            }
-            table, th, td {
-                border: 1px solid black;
-            }
-            </style>
-            </head>
-            <body>
-                <h1>Character Report</h1>
-                <table style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Gender</th>
-                            <th>Occupation</th>
-                            <th>Photos</th>
-                            <th>Relations Linked (IDs)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${character
-                .map(
-                    (char) => `
-                            <tr>
-                                <td>${char.name}</td>
-                                <td>${char.age}</td>
-                                <td>${char.gender}</td>
-                                <td>${char.occupation}</td>
-                                <td>${char.photos
-                                    .map((photo) => photo)
-                                    .join(", ")}</td>
-                                <td>${char.relations
-                            .map((relation) => relation)
-                            .join(", ")}</td>
-                            </tr>
-                        `
-                )
-                .join("")}
-                    </tbody>
-                </table>
-            </body>
-        </html>
-    `;
+        const pdfContent = html_template(character)
 
         // to set the html content of the page
         await page.setContent(pdfContent);
