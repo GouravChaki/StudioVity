@@ -1,5 +1,5 @@
 # StudioVity
-Backend Software for StudioVity
+Backend Software build for Complex application systems
 
 Pre-requisites to install: 
 
